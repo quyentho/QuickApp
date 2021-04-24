@@ -22,11 +22,14 @@ steps:
     checkLatest: true
   displayName: 'install nodejs'
 
+- script: echo %cd%
+  displayName: pwd
+
 - script: |
     npm install -g @angular/cli
     npm install
     ng build --prod
-  workingDirectory: '/QuickApp/ClientApp/'
+  workingDirectory: './QuickApp/ClientApp/'
   displayName: 'npm install and build'
 
 - task: NuGetCommand@2
