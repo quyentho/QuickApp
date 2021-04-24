@@ -23,10 +23,10 @@ steps:
   displayName: 'install nodejs'
 
 - script: |
-  workingDirectory: '/QuickApp/ClientApp/'
     npm install -g @angular/cli
     npm install
     ng build --prod
+  workingDirectory: '/QuickApp/ClientApp/'
   displayName: 'npm install and build'
 
 - task: NuGetCommand@2
