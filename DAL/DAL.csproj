@@ -7,6 +7,9 @@
     <Copyright>Copyright © 2019 www.ebenmonney.com</Copyright>
     <PackageProjectUrl>https://www.ebenmonney.com/quickapp</PackageProjectUrl>
     <Company>EBENMONNEY</Company>
+    <PackageId>QuickApp.DAL</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>QuyenTho</Authors>
   </PropertyGroup>
 
   <ItemGroup>
