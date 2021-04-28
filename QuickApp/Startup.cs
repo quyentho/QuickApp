@@ -36,8 +36,17 @@ namespace QuickApp
 
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
+       
             _env = env;
             Configuration = configuration;
+
+            var config = new ConfigurationBuilder()
+               .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+               .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+               .AddEnvironmentVariables()
+               .Build();
+
+            Console.WriteLine(Configuration["https_port"]);
         }
 
 

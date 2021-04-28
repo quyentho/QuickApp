@@ -21,7 +21,9 @@ namespace QuickApp
     {
         public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
+            var host = CreateHostBuilder(args)
+                .Build();
+                 
 
 
             //Seed database
@@ -52,6 +54,7 @@ namespace QuickApp
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {
