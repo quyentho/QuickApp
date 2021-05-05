@@ -330,6 +330,7 @@ node_modules/
 # ---- SonarQube
 .sonar/
 .scannerwork/
+.sonarqube/
 
 # scripts patches, they are local to each developer
 scripts/patches/*.*
