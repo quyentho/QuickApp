@@ -13,10 +13,18 @@ namespace QuickApp.Tests
     [AllureDisplayIgnored]
     public class Tests
     {
-        IWebDriver _driver = new ChromeDriver(Directory.GetCurrentDirectory());
+        IWebDriver _driver;
+        
         [SetUp]
         public void Setup()
         {
+
+            string driverPath = Directory.GetCurrentDirectory();
+
+            //ChromeOptions chromeOptions = new ChromeOptions();
+            //chromeOptions.BinaryLocation = Path.Combine(driverPath, "chromedriver.exe");
+
+            _driver =  new ChromeDriver(driverPath);
         }
 
         [Test]
@@ -42,7 +50,7 @@ namespace QuickApp.Tests
         [AllureSubSuite("NoAssert")]
         public void Test2()
         {
-            Assert.Fail();
+            Assert.Pass();
         }
 
         [Test]
@@ -58,9 +66,10 @@ namespace QuickApp.Tests
             _driver.Url = "https://google.com";
             var txtSearch = _driver.FindElement(By.XPath("//input[@class='gLFyf gsfi']"));
             txtSearch.SendKeys("Hello World!");
-            var btnEnter = _driver.FindElement(By.XPath("(//input[@class='gNO89b'])[2]"));
-            btnEnter.Click();
-            Assert.Fail();
+            //var btnEnter = _driver.FindElement(By.XPath("(//input[@class='gNO89b'])[2]"));
+            //btnEnter.Click();
+            txtSearch.Submit();
+            Assert.Pass();
         }
     }
 }
