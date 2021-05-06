@@ -2,9 +2,9 @@ using Allure.Commons;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System.IO;
+//using OpenQA.Selenium;
+//using OpenQA.Selenium.Chrome;
+//using System.IO;
 
 namespace QuickApp.Tests
 {
@@ -13,7 +13,7 @@ namespace QuickApp.Tests
     [AllureDisplayIgnored]
     public class Tests
     {
-        IWebDriver _driver = new ChromeDriver(Directory.GetCurrentDirectory());
+        //IWebDriver _driver = new ChromeDriver(Directory.GetCurrentDirectory());
         [SetUp]
         public void Setup()
         {
