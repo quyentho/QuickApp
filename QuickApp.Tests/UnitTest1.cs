@@ -4,6 +4,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System;
 using System.IO;
 
 namespace QuickApp.Tests
@@ -14,12 +15,12 @@ namespace QuickApp.Tests
     public class Tests
     {
         IWebDriver _driver;
-        
+        string driverPath = Directory.GetCurrentDirectory();
         [SetUp]
         public void Setup()
         {
 
-            string driverPath = Directory.GetCurrentDirectory();
+            
 
             //ChromeOptions chromeOptions = new ChromeOptions();
             //chromeOptions.BinaryLocation = Path.Combine(driverPath, "chromedriver.exe");
@@ -69,7 +70,8 @@ namespace QuickApp.Tests
             //var btnEnter = _driver.FindElement(By.XPath("(//input[@class='gNO89b'])[2]"));
             //btnEnter.Click();
             txtSearch.Submit();
-            Assert.Pass();
+            Assert.Fail();
         }
     }
 }
+
