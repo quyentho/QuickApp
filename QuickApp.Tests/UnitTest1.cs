@@ -32,22 +32,22 @@ namespace QuickApp.Tests
             Assert.Pass();
         }
 
-        [Test]
-        [AllureTag("Regression")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureIssue("ISSUE-1")]
-        [AllureTms("TMS-12")]
-        [AllureOwner("User")]
-        [AllureSuite("PassedSuite")]
-        [AllureSubSuite("NoAssert")]
-        public void Test2()
-        {
-            _driver.Url = "https://google.com";
-            var txtSearch = _driver.FindElement(By.XPath("//input[@class='gLFyf gsfi']"));
-            txtSearch.SendKeys("Hello World!");
-            var btnEnter = _driver.FindElement(By.XPath("(//input[@class='gNO89b'])[2]"));
-            btnEnter.Click();
-            Assert.Fail();
-        }
+        //[Test]
+        //[AllureTag("Regression")]
+        //[AllureSeverity(SeverityLevel.critical)]
+        //[AllureIssue("ISSUE-1")]
+        //[AllureTms("TMS-12")]
+        //[AllureOwner("User")]
+        //[AllureSuite("PassedSuite")]
+        //[AllureSubSuite("NoAssert")]
+        //public void Test2()
+        //{
+        //    _driver.Url = "https://google.com";
+        //    var txtSearch = _driver.FindElement(By.XPath("//input[@class='gLFyf gsfi']"));
+        //    txtSearch.SendKeys("Hello World!");
+        //    var btnEnter = _driver.FindElement(By.XPath("(//input[@class='gNO89b'])[2]"));
+        //    btnEnter.Click();
+        //    Assert.Fail();
+        //}
     }
 }
