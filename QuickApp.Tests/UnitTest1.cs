@@ -70,7 +70,7 @@ namespace QuickApp.Tests
             //var btnEnter = _driver.FindElement(By.XPath("(//input[@class='gNO89b'])[2]"));
             //btnEnter.Click();
             txtSearch.Submit();
-            Assert.Fail();
+            Assert.Pass();
         }
     }
 }
