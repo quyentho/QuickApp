@@ -56,6 +56,7 @@ namespace QuickApp
             // Enable logging of potential PII messages (Personally Identifiable Information)
             //Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
 
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"], b => b.MigrationsAssembly("QuickApp")));
 
@@ -198,7 +199,12 @@ namespace QuickApp
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseForwardedHeaders(new ForwardedHeadersOptions
+            //{
+            //    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            //});
+
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {
