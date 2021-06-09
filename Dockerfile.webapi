@@ -1,11 +1,12 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 ARG environmentName
+ARG connectionString
 ARG httpPort
 ARG httpsPort
 ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/app/QuickApp.pfx
 ENV ASPNETCORE_ENVIRONMENT=$environmentName
 ENV ASPNETCORE_Kestrel__Certificates__Default__Password=quyen123
-ENV ConnectionStrings__DefaultConnection=
+ENV ConnectionStrings__DefaultConnection=$connectionString
 WORKDIR /app
 EXPOSE $httpPort $httpsPort
 
