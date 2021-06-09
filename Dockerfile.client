@@ -1,0 +1,10 @@
+FROM node:12.7-alpine AS build
+ARG environmentName
+WORKDIR /app
+COPY ./QuickApp/QuickApp/ClientApp/package.json ./QuickApp/QuickApp/ClientApp/package-lock.json /app/
+RUN npm install
+COPY ./QuickApp/QuickApp/ClientApp .
+RUN node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --configuration=$environmentName
+
+FROM nginx:1.21.0-alpine
+COPY --from=build /app/dist /usr/share/nginx/html
