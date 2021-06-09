@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  web_api:
+    image: my.image.name:rc2
+    build:
+      context: .
+      dockerfile: Dockerfile.webapi
+    environment:
+       - "ConnectionStrings__DefaultConnection=${ConnectionStrings__DefaultConnection}"

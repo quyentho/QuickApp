@@ -1,24 +1,24 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 ARG environmentName
+ARG httpPort
+ARG httpsPort
 ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/app/QuickApp.pfx
-ENV ASPNETCORE_HTTPS_PORT=7002
-ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_ENVIRONMENT=$environmentName
 ENV ASPNETCORE_Kestrel__Certificates__Default__Password=quyen123
-ENV ASPNETCORE_URLS=http://*:7001;https://*:7002
-ENV ConnectionStrings:DefaultConnection="Server=40.113.198.24,1433;Database=quyenquickapp;User ID=sa;Password=Nguyenchivy@124"
+ENV ConnectionStrings__DefaultConnection=
 WORKDIR /app
-EXPOSE 7001 7002
+EXPOSE $httpPort $httpsPort
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY ./QuickApp/QuickApp/QuickApp.csproj QuickApp/
-COPY ./QuickApp/DAL/DAL.csproj DAL/
-COPY ./QuickApp/QuickApp.Tests/QuickApp.Tests.csproj QuickApp.Test/
+COPY ./QuickApp/QuickApp.csproj QuickApp/
+COPY ./DAL/DAL.csproj DAL/
+COPY ./QuickApp.Tests/QuickApp.Tests.csproj QuickApp.Test/
 RUN dotnet restore QuickApp/QuickApp.csproj
 RUN dotnet restore QuickApp.Test/QuickApp.Tests.csproj
 RUN dotnet dev-certs https --clean
 RUN dotnet dev-certs https -ep ./QuickApp/QuickApp.pfx -p quyen123
-COPY ./QuickApp .
+COPY . .
 
 FROM build AS publish
 RUN dotnet publish -c Release -o /app/publish
@@ -27,4 +27,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=build /src/QuickApp/QuickApp.pfx ./QuickApp.pfx
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet","QuickApp.dll", "watch", "run", "--no-restore", "--urls", "http://0.0.0.0:7001"]
+ENTRYPOINT ["dotnet","QuickApp.dll", "watch", "run", "--no-restore", "--urls", "http://0.0.0.0:$httpPort"]
